@@ -25,4 +25,9 @@ Route::group(['prefix' => 'admin','middleware' => ['auth:admin','checkrbac']],fu
     Route::any('auth/add','Admin\AuthController@add');//权限添加
     Route::get('role/index','Admin\RoleController@index');//角色的展示
     Route::any('role/assign','Admin\RoleController@assign');//角色权限分配
+    //会员的管理模块
+    Route::get('member/index','Admin\MemberController@index');//列表
+    Route::any('member/add','Admin\MemberController@add');//添加
+    Route::post('uploader/webuploader','Admin\UploaderController@webuploader');//异步上传
+    Route::get('member/getareabyid','Admin\MemberController@getAreaById');//ajax联动
 });
