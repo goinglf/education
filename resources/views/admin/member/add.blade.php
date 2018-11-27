@@ -41,16 +41,16 @@
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>性别：</label>
 			<div class="formControls col-xs-8 col-sm-9 skin-minimal">
 				<div class="radio-box">
-					<input name="sex" type="radio" id="sex-1" checked>
-					<label for="sex-1">男</label>
+					<input name="gender" type="radio" id="gender-1" value="1" checked>
+					<label for="gender-1">男</label>
 				</div>
 				<div class="radio-box">
-					<input type="radio" id="sex-2" name="sex">
-					<label for="sex-2">女</label>
+					<input type="radio" id="gender-2" name="gender" value="2">
+					<label for="gender-2">女</label>
 				</div>
 				<div class="radio-box">
-					<input type="radio" id="sex-3" name="sex">
-					<label for="sex-3">保密</label>
+					<input type="radio" id="gender-3" value="3" name="gender">
+					<label for="gender-3">保密</label>
 				</div>
 			</div>
 		</div>
@@ -69,32 +69,36 @@
 
 		<div class="row c1">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>
-				所属国家：</label>
+				地址：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 
-<span class="select-box" style="width:110px;">
+{{--<span class="select-box" style="width:110px;">--}}
 
-<select class="select" name="country id" size="1">
+{{--<select class="select" name="country id" size="1">--}}
 
-<option value="0">国家</option>
+{{--<option value="0">地区</option>--}}
+    {{--@foreach($country as $v )--}}
+        {{--<option value="0">{{$v->area}}</option>--}}
+    {{--@endforeach--}}
+{{--</select>--}}
 
-</select>
-
-</span>
+{{--</span>--}}
 
 				<span class="select-box" style="width:110px;">
 
-<select class="select" name="province id" size="1">
+<select class="select" name="province_id" size="1">
 
 <option value="0">省份/州</option>
-
+    @foreach($country as $v )
+        <option value="{{$v->id}}">{{$v->area}}</option>
+    @endforeach
 </select>
 
 </span>
 
 				<span class="select-box" style="width:110px;">
 
-<select class="select" name="city id" size="1">
+<select class="select" name="city_id" size="1">
 
 <option value="0">城市</option>
 
@@ -104,7 +108,7 @@
 
 				<span class="select-box" style="width:110px;">
 
-<select class="select" name="county id" size="1">
+<select class="select" name="county_id" size="1">
 
 <option value="0">县区</option>
 
@@ -122,7 +126,7 @@
 
 		<div class="formControls col-xs-8 col-sm-9 skin-minimal">
 			<div class="radio-box">
-				<input name="type"type="radio" id="type-1"value="1" checked>
+				<input name="type"type="radio" id="type-1" value="1" checked>
 				<label for="type-1">学生</label></div>
 		<div class="radio-box">
 			<input type="radio" id="type-2" name="type" value="2">
@@ -135,6 +139,7 @@
 				<input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
 			</div>
 		</div>
+        {{csrf_field()}}
 	</form>
 </article>
 
@@ -151,15 +156,28 @@
 <script type="text/javascript" src="/admin/lib/jquery.validation/1.14.0/messages_zh.js"></script>
 <script type="text/javascript">
 	$(function () {
-		$('select[name=country_id]').change(function () {
+		$('select[name=province_id]').change(function () {
 			var id=$(this).val();
 			$.get('/admin/member/getareabyid',{id:id},function (data) {
 				var str='';
 				$.each(data,function (index,el) {
 					str +="<option value='"+el.id +"'>"+el.area+"</option>";
                 });
-                $('select[name=province_id]').find('option:gt(0)').remove();
-                $('select[name=province_id]').append(str);
+                $('select[name=city_id]').find('option:gt(0)').remove();
+                $('select[name=city_id]').append(str);
+            },'json');
+        })
+    });
+    $(function () {
+        $('select[name=city_id]').change(function () {
+            var id=$(this).val();
+            $.get('/admin/member/getareabyid',{id:id},function (data) {
+                var str='';
+                $.each(data,function (index,el) {
+                    str +="<option value='"+el.id +"'>"+el.area+"</option>";
+                });
+                $('select[name=county_id]').find('option:gt(0)').remove();
+                $('select[name=county_id]').append(str);
             },'json');
         })
     });
@@ -177,7 +195,7 @@ $(function(){
 				minlength:2,
 				maxlength:16
 			},
-			sex:{
+			gender:{
 				required:true,
 			},
 			mobile:{
