@@ -18,6 +18,7 @@
 <link rel="stylesheet" type="text/css" href="/admin/lib/Hui-iconfont/1.0.8/iconfont.css" />
 <link rel="stylesheet" type="text/css" href="/admin/static/h-ui.admin/skin/default/skin.css" id="skin" />
 <link rel="stylesheet" type="text/css" href="/admin/static/h-ui.admin/css/style.css" />
+<link rel="stylesheet" type="text/css" href="/statics/webuploader-0.1.5/webuploader.css" />
 <!--[if IE 6]>
 <script type="text/javascript" src="/admin/lib/DD_belatedPNG_0.0.8a-min.js" ></script>
 <script>DD_belatedPNG.fix('*');</script>
@@ -66,24 +67,21 @@
 				<input type="text" class="input-text" placeholder="@" name="email" id="email">
 			</div>
 		</div>
-
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3">头像：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<div id="uploader-demo">
+					<!--用来存放item-->
+					<div id="fileList" class="uploader-list"></div>
+					<div id="filePicker">选择图片</div>
+				</div>
+			</div>
+		</div>
 		<div class="row c1">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>
 				地址：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-
-{{--<span class="select-box" style="width:110px;">--}}
-
-{{--<select class="select" name="country id" size="1">--}}
-
-{{--<option value="0">地区</option>--}}
-    {{--@foreach($country as $v )--}}
-        {{--<option value="0">{{$v->area}}</option>--}}
-    {{--@endforeach--}}
-{{--</select>--}}
-
-{{--</span>--}}
-
+                <input type="hidden" name="avatar" value="">
 				<span class="select-box" style="width:110px;">
 
 <select class="select" name="province_id" size="1">
@@ -154,6 +152,8 @@
 <script type="text/javascript" src="/admin/lib/jquery.validation/1.14.0/jquery.validate.js"></script> 
 <script type="text/javascript" src="/admin/lib/jquery.validation/1.14.0/validate-methods.js"></script> 
 <script type="text/javascript" src="/admin/lib/jquery.validation/1.14.0/messages_zh.js"></script>
+<script type="text/javascript" src="/statics/webuploader-0.1.5/webuploader.js"></script>
+<script type="text/javascript" src="/statics/avatar.js"></script>
 <script type="text/javascript">
 	$(function () {
 		$('select[name=province_id]').change(function () {
