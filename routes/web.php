@@ -30,4 +30,8 @@ Route::group(['prefix' => 'admin','middleware' => ['auth:admin','checkrbac']],fu
     Route::any('member/add','Admin\MemberController@add');//添加
     Route::post('uploader/webuploader','Admin\UploaderController@webuploader');//异步上传
     Route::get('member/getareabyid','Admin\MemberController@getAreaById');//ajax联动
+
+    //专业课程
+    Route::get('protype/index','Admin\ProtypeController@index');//专业列表
+    Route::get('profession/index','Admin\ProfessionController@index');//课程列表
 });
