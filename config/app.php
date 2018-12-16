@@ -162,6 +162,8 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+
 
 
         /*
@@ -231,6 +233,8 @@ return [
         'Debugbar'=>Barryvdh\Debugbar\Facade::class,
         'Captcha' => Mews\Captcha\Facades\Captcha::class,
         'Input' => Illuminate\Support\Facades\Input::class,
+        'Excel'=>Maatwebsite\Excel\Facades\Excel::class,
+
     ],
 
 ];

@@ -39,4 +39,9 @@ Route::group(['prefix' => 'admin','middleware' => ['auth:admin','checkrbac']],fu
     Route::get('course/index','Admin\CourseController@index');//列表
     Route::get('lesson/index','Admin\LessonController@index');//点播列表
     Route::get('lesson/play','Admin\LessonController@play');//播放页
+    //试卷管理
+    Route::get('paper/index','Admin\PaperController@index');//试卷列表
+    Route::get('question/index','Admin\QuestionController@index');//列表
+    Route::get('question/export','Admin\QuestionController@export');//导出
+    Route::get('question/import','Admin\QuestionController@import');//导出
 });
