@@ -34,4 +34,9 @@ Route::group(['prefix' => 'admin','middleware' => ['auth:admin','checkrbac']],fu
     //专业课程
     Route::get('protype/index','Admin\ProtypeController@index');//专业列表
     Route::get('profession/index','Admin\ProfessionController@index');//课程列表
+
+    //课程与点播课程
+    Route::get('course/index','Admin\CourseController@index');//列表
+    Route::get('lesson/index','Admin\LessonController@index');//点播列表
+    Route::get('lesson/play','Admin\LessonController@play');//播放页
 });
